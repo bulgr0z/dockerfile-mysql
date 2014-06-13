@@ -1,18 +1,9 @@
 #!/bin/bash
 
-# timestamp getter
-# timestamp() {
-#   date +"%T"
-# }
-#
-# echo $(timestamp)
-# exit 0
-
 echo "========================================================================="
 echo "#  mysqld is starting, please wait..."
 echo "#"
 
-# mysqld_safe 2>&1 | tee /home/docker_mysql.log &
 mysqld_safe --skip-syslog > /home/docker_mysql.log 2>&1 &
 
 sleep 1
