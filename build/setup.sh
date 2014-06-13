@@ -29,7 +29,7 @@ echo "#    login: admin"
 echo "#    password: $admin_password"
 echo "#"
 echo "#  * root is only accessible from within this container."
-echo "#  It does not accept any connection execpt from localhost."
+echo "#  It does not accept any connection except from localhost."
 echo "#"
 echo "========================================================================="
 
