@@ -1,5 +1,22 @@
 #!/bin/bash
 
+# If a volume is mounted on /var/lib/mysql, the db installed by apt-get will be replaced by the files in the volume.
+#  - if this folder is empty (fresh install), we need to run mysql_install_db in order to start the daemon.
+#  - if this folder is not empty, we assume it is a "working" mysql datadir (w/ potential data in it) and do nothing.
+if [ "$(ls -A /var/lib/mysql)" ]; then
+   echo "========================================================================="
+   echo "# The volume mounted on /var/lib/mysql is not empty, mysql_install_db will not run."
+   echo "# If you need a fresh mysql db, please clear the volume and re-build the image."
+   echo "#"
+else
+   echo "========================================================================="
+   echo "# No database found, installing one."
+   /usr/bin/mysql_install_db
+   echo "========================================================================="
+   echo "# A database has been created in the volume mounted on /var/lib/mysql."
+   echo "#"
+fi
+
 echo "========================================================================="
 echo "#  mysqld is starting, please wait..."
 echo "#"
