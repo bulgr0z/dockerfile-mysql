@@ -13,11 +13,17 @@ USAGE
 
 1. Clone the repo and cd into it
 2. Build the image with `docker build -t bulgroz/mysql .`
-3. Run the container `docker run -d -p 127.0.0.1:3306:3306 bulgroz/mysql`
-    * change the ports/interface to your liking, or expose nothing and link like a baws
+3. Run the container `docker run -d --name mysql -v /var/lib/mysql:/<your>/<volume> bulgroz/mysql`
+    * Add `-p xx.xx.xx.xx:3306:3306` to expose the server or simply link it to another container
     * name the container with `--name mysql` for easy linking
     * persist your data by mounting a volume with `-v /var/lib/mysql:/<your>/<volume>`
 4. Get your (random) admin credentials by running `docker logs <id>` on the previously created container.
+
+CAVEATS
+=======
+
+At this stage if your do not mount a volume on `/var/lib/mysql` (and persist the data **in the container**), the build script will fail to create the `admin` account, giving you no remote access to the container. 
+This will be fixed in a future release, although you really should consider keeping the data outside of the container to simplify your backup strategy.
 
 ABOUT ROOT
 ==========
