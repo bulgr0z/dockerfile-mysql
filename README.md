@@ -17,7 +17,7 @@ USAGE
     * Add `-p xx.xx.xx.xx:3306:3306` to expose the server or simply link it to another container
     * name the container with `--name mysql` for easy linking
     * persist your data by mounting a volume with `-v /var/lib/mysql:/<your>/<volume>`
-4. Get your (random) admin credentials by running `docker logs <id>` on the previously created container.
+4. Get your (random) admin credentials by running `docker logs -f <id>` on the previously created container.
 
 CAVEATS
 =======
